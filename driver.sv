@@ -16,7 +16,7 @@ class driver;
             vir_inf_adder.a <= transc.a;
             vir_inf_adder.b <= transc.b;
             vir_inf_adder.c <= transc.c;
-            $display("A : %0d , B = %0d , C = %0d" , transc.a , transc.b , transc.c );
+            $display("Values of Input in Driver \n A : %0d , B = %0d , C = %0d" , transc.a , transc.b , transc.c );
         end
     endtask
 endclass
