@@ -9,9 +9,12 @@ class generator;
         this.gen2driver = gen2driver; 
     endfunction
     task main();
-        repeat(2) begin
+        repeat(7) begin
+            transc = new();
             transc.randomize();
+            $display("Value of inputs in Generator \n A =%0d , B = %0d , C = %0d " , transc.a , transc.b , transc.c);
             gen2driver.put(transc);
         end
+        $display("====================================");
     endtask
 endclass
