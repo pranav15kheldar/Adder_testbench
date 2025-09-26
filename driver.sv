@@ -10,13 +10,17 @@ class driver;
     endfunction
 
     task main();
-        repeat(2) begin
+        repeat(7) begin
             gen2driver.get(transc); // Recive the data from generator 
             // And Send it to interface
-            vir_inf_adder.a <= transc.a;
-            vir_inf_adder.b <= transc.b;
-            vir_inf_adder.c <= transc.c;
-            $display("Values of Input in Driver \n A : %0d , B = %0d , C = %0d" , transc.a , transc.b , transc.c );
+            vir_inf_adder.a = transc.a;
+            vir_inf_adder.b = transc.b;
+            vir_inf_adder.c = transc.c;
+            #1;
+            transc.sum = vir_inf_adder.sum;
+            transc.carry = vir_inf_adder.carry;
+            $display("Values of Input in Driver \n A : %0d , B = %0d , C = %0d , Sum=%0d , Carry = %0d" , transc.a , transc.b , transc.c , transc.sum , transc.carry);
         end
+        $display("====================================");
     endtask
 endclass
