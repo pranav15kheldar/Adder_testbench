@@ -10,13 +10,18 @@ module top_adder ();
         .carry(inf_test.carry)
     );
     initial begin
+        inf_test.clk = 0;
+        forever #5 inf_test.clk = ~inf_test.clk; // 100MHz
+    end
+
+    initial begin
        t = new(inf_test);
        t.test_run(); 
     end
     initial begin
         $dumpfile("dump.vcd");
         $dumpvars();
-        #100;
+        #110;
         $finish;
     end
 endmodule
