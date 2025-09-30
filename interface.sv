@@ -1,4 +1,5 @@
-interface inf_adder;
+interface inf_adder();
+    logic clk;
     logic a;
     logic b;
     logic c;
