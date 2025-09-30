@@ -10,17 +10,18 @@ class driver;
     endfunction
 
     task main();
-        repeat(7) begin
+        forever begin
+            @(posedge vir_inf_adder.clk);
             gen2driver.get(transc); // Recive the data from generator 
             // And Send it to interface
-            vir_inf_adder.a = transc.a;
-            vir_inf_adder.b = transc.b;
-            vir_inf_adder.c = transc.c;
-            #1;
-            transc.sum = vir_inf_adder.sum;
-            transc.carry = vir_inf_adder.carry;
-            $display("Values of Input in Driver \n A : %0d , B = %0d , C = %0d , Sum=%0d , Carry = %0d" , transc.a , transc.b , transc.c , transc.sum , transc.carry);
+            vir_inf_adder.a <= transc.a;
+            vir_inf_adder.b <= transc.b;
+            vir_inf_adder.c <= transc.c;
+            transc.sum <= vir_inf_adder.sum;
+            transc.carry <= vir_inf_adder.carry;
+             $display("---------------------------- Transcation Begin --------------------");
+            $display("****************Values of Input in Driver *******************\n time = %0d , A : %0d , B = %0d , C = %0d ",$time , transc.a , transc.b , transc.c);
+            $display("=================================================================");
         end
-        $display("====================================");
     endtask
 endclass
