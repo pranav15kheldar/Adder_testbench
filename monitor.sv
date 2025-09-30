@@ -9,15 +9,16 @@ class monitor;
     endfunction
 
     task main();
-        repeat(7) begin
+        forever begin
+            @(negedge vir_inf_adder.clk);
             transc = new();
             transc.a = vir_inf_adder.a;
             transc.b = vir_inf_adder.b;
             transc.c = vir_inf_adder.c;
             transc.sum = vir_inf_adder.sum;
             transc.carry = vir_inf_adder.carry;
+            $display("*****************Output in Monitor ********************\n time = %0t ,A = %0d , B = %0d , C = %0d sum = %0d , Carry = %0d \n ******************************************************",$time , transc.a , transc.b , transc.c , transc.sum , transc.carry);
             moni2Score.put(transc);
-            $display("*****************Output in Monitor ********************\n A = %0d , B = %0d , C = %0d sum = %0d , Carry = %0d" , transc.a , transc.b , transc.c , transc.sum , transc.carry);
         end
     endtask
 endclass
